@@ -17,14 +17,7 @@ fn main() {
     let mut input: Vec<i32> = vec![5];
     if let Ok(mut mem) = get_input::<i32>("input.in") {
         let mut pc: usize = 0;
-        //mem[1] = 12;
-        //mem[2] = 02;
-        /*let mut mem :BTreeMap<i32, i32> = BTreeMap::new();
-        input.iter().enumerate().for_each(|(i,pt)| {
-            mem.insert(i as i32, *pt);
-        });*/
         loop {
-            //let (op, arg1, arg2, dst) = (mem[pc],mem[(pc+1)],mem[(pc+2)],mem[(pc+3)]);
             let full_op = mem[pc];
             let op = full_op % 100;
             let c_mode = (full_op / 100) % 10;
@@ -65,6 +58,7 @@ fn main() {
                     pc = pc + 2;
                 }
                 5 => {
+                    //b true
                     let arg1 = get_param(&mem, c_mode, mem[pc + 1]);
                     let arg2 = get_param(&mem, b_mode, mem[pc + 2]);
                     if arg1 != 0 {
@@ -73,7 +67,7 @@ fn main() {
                         pc = pc + 3;
                     }
                 }
-                6 => {
+                6 => { //bfalse
                     let arg1 = get_param(&mem, c_mode, mem[pc + 1]);
                     let arg2 = get_param(&mem, b_mode, mem[pc + 2]);
                     if arg1 == 0 {
@@ -82,14 +76,14 @@ fn main() {
                         pc = pc + 3;
                     }
                 }
-                7 => {
+                7 => { //slt
                     let arg1 = get_param(&mem, c_mode, mem[pc + 1]);
                     let arg2 = get_param(&mem, b_mode, mem[pc + 2]);
                     let dst = mem[pc + 3];
                     mem[dst as usize] = if arg1 < arg2 { 1 } else { 0 };
                     pc = pc + 4;
                 }
-                8 => {
+                8 => { //seq
                     let arg1 = get_param(&mem, c_mode, mem[pc + 1]);
                     let arg2 = get_param(&mem, b_mode, mem[pc + 2]);
                     let dst = mem[pc + 3];
