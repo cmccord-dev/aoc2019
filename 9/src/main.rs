@@ -11,7 +11,7 @@ fn get_param(mem: &Vec<i64>, mode: i64, rb: i64, value: i64) -> i64 {
         _ => panic!("invalid mode"),
     }
 }
-fn get_param_dst(mem: &Vec<i64>, mode: i64, rb: i64, value: i64) -> usize {
+fn get_param_dst(_mem: &Vec<i64>, mode: i64, rb: i64, value: i64) -> usize {
     match mode {
         0 => value as usize,
         1 => panic!("not supported"),
